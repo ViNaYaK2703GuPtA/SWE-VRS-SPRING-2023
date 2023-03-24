@@ -98,7 +98,7 @@
 	     	<a href="{% url 'cart' %}">
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
 	    	</a>
-	    	<p id="cart-total">{{cartItems}}</p>
+	    	<p id="cart-total">{{order.get_cart_items}}</p>
 
 	    </div>
 	  </div>

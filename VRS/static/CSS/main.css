@@ -3,6 +3,7 @@ body{
 	background-image:linear-gradient(to right, rgba(252, 249, 252, 0.52), rgba(43, 40, 42, 0.73)),
 	url(../images/background.jpg);
 	background-size: cover;
+	color: #ececec;
 	
 }
 
@@ -63,7 +64,7 @@ h1,h2,h3,h4,h5,h6{
 
 .btn{
 	border-radius: 0;
-	
+
 }
 
 .row-image{
