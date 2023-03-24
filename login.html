@@ -1,0 +1,21 @@
+
+
+{% block content %}
+  <div class="container1">
+    <h1>Login</h1>
+
+    <form method="post" action="{% url 'login' %}" class="form">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username"><br><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password"><br><br>
+
+      <label for="is_staff">I am staff:</label>
+      <input type="checkbox" id="is_staff" name="is_staff"><br><br>
+
+      <input type="submit" value="Login" class="btn">
+    </form>
+  </div>
+{% endblock %}
