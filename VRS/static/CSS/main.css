@@ -1,14 +1,20 @@
 body{
-	background-color: hsl(0, 0%, 98%);
+	
+	background-image:linear-gradient(to right, rgba(252, 249, 252, 0.52), rgba(43, 40, 42, 0.73)),
+	url(../images/background.jpg);
+	background-size: cover;
+	
 }
 
+
+
 h1,h2,h3,h4,h5,h6{
-	color:hsl(0, 0%, 30%);
+	color:hsl(0, 21%, 94%);
 }
 
 .box-element{
-	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
-	background-color: #fff;
+	box-shadow:hsl(0, 0%, 6%) 0 0 16px;
+	background-color: #313232;
 	border-radius: 4px;
 	padding: 10px;
 }
@@ -57,6 +63,7 @@ h1,h2,h3,h4,h5,h6{
 
 .btn{
 	border-radius: 0;
+	
 }
 
 .row-image{
