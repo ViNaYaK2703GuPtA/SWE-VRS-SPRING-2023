@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
   
 # Create your views here.
+
+def role(request):
+     return render(request, 'store/role.html')
+
 
 def store(request):
      products = Product.objects.all()
