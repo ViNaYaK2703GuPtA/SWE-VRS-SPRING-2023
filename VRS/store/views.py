@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
   
 # Create your views here.
 
@@ -43,24 +44,27 @@ def checkout(request):
      return render(request, 'store/checkout.html', context)
 
 
-def customer_signup(request):
-     if request.method == 'POST':
-          username = request.POST.get('username', '')
-          password1 = request.POST.get('password1', '')
-          password2 = request.POST.get('password2', '')
-          email = request.POST.get('email', '')
 
-          if password1 != password2 : 
-              return render(request, 'store/customer_signup.html', {'message': 'Password is not confirmed!'})
-          if len(User.objects.filter(username=username))!=0:
-               return render(request, 'store/customer_signup.html', {'message': 'User already exists!'})
-          
-          user = User.objects.create_user(username=username, password=password1, email=email)
-          
-          user.save()
-          return redirect('/customer/login/')
-     
-     return render(request, 'store/customer_signup.html', {'message': 'Account Succesfully created!'})
+def customer_signup(request):
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        password1 = request.POST.get('password1', '')
+        password2 = request.POST.get('password2', '')
+        email = request.POST.get('email', '')
+
+        if password1 != password2:
+            return render(request, 'store/customer_signup.html', {'message': 'Password is not confirmed!'})
+
+        if User.objects.filter(username=username).exists():
+            return render(request, 'store/customer_signup.html', {'message': 'User already exists!'})
+
+        user = User.objects.create_user(username=username, password=password1, email=email)
+        customer = Customer.objects.create(user=user, name=username, email=email, password=password1)
+
+        login(request, user)
+        return redirect('/customer/login/')
+
+    return render(request, 'store/customer_signup.html', {'message': 'Account Successfully created!'})
 
         
 
@@ -86,6 +90,6 @@ def staff_login(request):
                login(request, user)
                return redirect('/store')
           else:
-               return render(request, 'store/staff_login.html', {'error_message': 'Invalid username or password'})
+               return render(request, 'store/staff_login.html', {'message': 'Invalid username or password'})
      
-     return render(request, 'store/staff_login.html', {'error_message': ''})
+     return render(request, 'store/staff_login.html', {'message': ''})

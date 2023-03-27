@@ -5,15 +5,18 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+
 
 # Create your models here.
 
 class Customer(models.Model):
-    user=models.OneToOneField( User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    password = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200)
 
-    #def __str__(self):
-    #    return self.name
+    def __str__(self):
+        return self.name
     
 class Product(models.Model):
     name=models.CharField(max_length=200)
@@ -72,5 +75,11 @@ class OrderItem(models.Model):
         return str(self.id) 
     
 
+class Staff(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    password = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200)
 
-
+    def __str__(self):
+        return self.name
