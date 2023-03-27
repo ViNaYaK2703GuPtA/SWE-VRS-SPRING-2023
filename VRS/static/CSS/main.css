@@ -3,8 +3,7 @@ body{
 	background-image:linear-gradient(to right, rgba(252, 249, 252, 0.52), rgba(43, 40, 42, 0.73)),
 	url(../images/background.jpg);
 	background-size: cover;
-	color: #ececec;
-	
+	color:#ececec;
 }
 
 
@@ -64,12 +63,12 @@ h1,h2,h3,h4,h5,h6{
 
 .btn{
 	border-radius: 0;
-
+	
 }
 
 .btn-outline-secondary {
-    color: #fff;
-    border-color: #fff;
+    color: #ececec;
+    border-color: #ececec;
 }
 
 .row-image{
@@ -84,7 +83,7 @@ h1,h2,h3,h4,h5,h6{
 
 .cart-row{
 	display: flex;
-    align-items: flex-stretch;
+    align-items: stretch;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ececec;
