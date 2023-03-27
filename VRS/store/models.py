@@ -1,50 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
-
-# Create your models here.
-
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
-def customer_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('/customer/')
-        else:
-            error_message = "Invalid username or password."
-            return render(request, 'customer_login.html', {'error_message': error_message})
-    else:
-        return render(request, 'customer_login.html', {})
-
-
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-def customer_signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/customer/login/')
-    else:
-        form = UserCreationForm()
-    return render(request, 'customer_signup.html', {'form': form})
-
-
+# Create your models here.
 
 class Customer(models.Model):
-    user=models.OneToOneField( User, null=True, blank=True, on_delete=models.CASCADE)
-    name=models.CharField(max_length=200, null=True)
-    email=models.CharField(max_length=200)
+    user=models.OneToOneField( User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
+    #def __str__(self):
+    #    return self.name
     
 class Product(models.Model):
     name=models.CharField(max_length=200)
