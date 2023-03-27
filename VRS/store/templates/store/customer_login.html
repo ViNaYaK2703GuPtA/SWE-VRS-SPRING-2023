@@ -7,9 +7,10 @@
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 <body>
   <h1>Customer Login</h1>
-  {% if error_message %}
+  <!-- {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
-  {% endif %}
+  {% endif %} -->
+  <h3>{{message}}</h3>
   <form method="post">
     {% csrf_token %}
     <label for="username">Username:</label>
