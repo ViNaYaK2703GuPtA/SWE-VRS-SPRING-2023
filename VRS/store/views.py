@@ -11,6 +11,11 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
+def get_products(request):
+    products = Product.objects.all()
+    product_list = [{'name': p.name, 'price': p.price} for p in products]
+    return JsonResponse({'products': product_list})
+
 def role(request):
      return render(request, 'store/role.html')
 
