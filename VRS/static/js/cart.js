@@ -35,3 +35,26 @@ function UpdateuserOrder(productId,action){
             location.reload()
 		});
 }
+
+//Function for searchBar
+document.getElementById('search-button').addEventListener('click', function(event) {
+    event.preventDefault(); // prevent default form submission behavior
+    const term = document.getElementById('search-bar').value.toLowerCase();
+    fetch('/get-products/')
+        .then(response => response.json())
+        .then(data => {
+            const products = data.products;
+            const matchingProducts = products.filter(product => product.name.toLowerCase().startsWith(term));
+            const allDivs = document.querySelectorAll('.col-lg-4');
+            allDivs.forEach(div => {
+                const productId = div.id;
+                console.log(productId);
+                if(matchingProducts.some(p => (p.name === productId))){
+                    div.classList.remove('hidden');
+                } else {
+                    div.classList.add('hidden');
+                }
+            });
+
+        });
+});
