@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from . import models
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
 	# Leave as empty string for base url
@@ -11,6 +12,7 @@ urlpatterns = [
 	path('staff/login/', views.staff_login, name='staff_login'),
         path('customer/login/', views.customer_login, name='customer_login'),
         path('customer/signup/', views.customer_signup, name='customer_signup'),
+	path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
 	path('update_item/', views.updateItem, name="update_item"),
 	path('process_order/', views.processOrder, name="process_order"),
