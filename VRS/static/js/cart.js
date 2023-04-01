@@ -36,7 +36,7 @@ function UpdateuserOrder(productId,action){
 		});
 }
 
-//Function for searchBar
+//Function for searchBar and search Button
 document.getElementById('search-button').addEventListener('click', function(event) {
     event.preventDefault(); // prevent default form submission behavior
     const term = document.getElementById('search-bar').value.toLowerCase();
