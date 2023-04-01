@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import models
 
 urlpatterns = [
 	# Leave as empty string for base url
@@ -13,4 +14,5 @@ urlpatterns = [
 
 	path('update_item/', views.updateItem, name="update_item"),
 	path('process_order/', views.processOrder, name="process_order"),
+	path('view/<str:product_name>/', views.view_product, name="view_product"),
 ]

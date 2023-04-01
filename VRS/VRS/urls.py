@@ -24,3 +24,7 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+admin.site.index_title = "VRS"
+admin.site.site_header = "VRS"
+admin.site.site_title = "VRS Portal"
+

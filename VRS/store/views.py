@@ -29,6 +29,14 @@ def store(request):
      return render(request,
                'store/store.html', context)
 
+def view_product(request, product_name):
+     product= Product.objects.get(name=product_name)
+     context = {'product': product}
+     return render(request, 'store/view.html', context)
+
+
+
+
 
 def cart(request):
      if request.user.is_authenticated:

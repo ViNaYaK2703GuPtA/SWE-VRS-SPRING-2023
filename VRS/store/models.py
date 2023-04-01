@@ -5,9 +5,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 # Create your models here.
+
+
 
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
@@ -21,9 +24,11 @@ class Customer(models.Model):
 class Product(models.Model):
     name=models.CharField(max_length=200)
     price=models.FloatField()
-    digital=models.BooleanField(default=False, null=True, 
-    blank=False)
     image=models.ImageField(null=True, blank=True)
+    description=models.TextField( null=True, blank=True)
+    rating=models.FloatField(default=0)
+    genre=models.CharField(max_length=200, null=True, blank=True)
+    inlist=models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -77,9 +82,20 @@ class OrderItem(models.Model):
 
 
 class Staff(models.Model):
+    
     name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200)
     password= models.CharField(max_length=200, null=True)
+    Status= models.CharField(default='Staff', max_length=200, null=True)
+    date_joined= models.DateTimeField(auto_now_add=True)
+    class Meta:
+        permissions = (
+            ("can_view_staff", "Can view staff"),
+            ("can_edit_staff", "Can edit staff"),
+            ("can_delete_staff", "Can delete staff"),
+        )
+   
+
 
     def __str__(self):
         return self.name
@@ -97,3 +113,5 @@ class Staff(models.Model):
         self.user = user
 
         super(Staff, self).save(*args, **kwargs)
+
+
